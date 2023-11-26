@@ -8,7 +8,8 @@
         "cz": "cz",
         "preinstall": "npx only-allow pnpm",
         "lint": "eslint ./ --ext .ts,.js,.json --max-warnings=0",
-        "format": "prettier --config .prettierrc . --write"
+        "format": "prettier --config .prettierrc . --write",
+        "ds": "ds"
     },
     "private": "true",
     "engines": {
@@ -18,6 +19,7 @@
     "license": "ISC",
     "devDependencies": {
         "@changesets/cli": "^2.26.2",
+        "@dep-spy/cli": "^2.2.3",
         "@typescript-eslint/eslint-plugin": "^6.12.0",
         "@typescript-eslint/parser": "^6.12.0",
         "commitizen": "^4.3.0",
