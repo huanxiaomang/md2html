@@ -3,6 +3,7 @@ import { red } from "chalk";
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import createProject from './createProject';
+import { createServer } from './createServer';
 import { loadConfig } from './loadConfig';
 
 
@@ -14,7 +15,7 @@ cli.command('').action(() => {
 })
 
 cli.command('[file]', '需要转换的markdown文件')
-    .action(async (fileName: string, options: any) => {
+    .action(async (fileName: string, cliOptions: any) => {
 
         if (!existsSync(resolve(process.cwd(),fileName))) {
             throw new Error(red('指定的文件不存在'));
@@ -23,10 +24,19 @@ cli.command('[file]', '需要转换的markdown文件')
             throw new Error(red('指定的文件不为markdown文件'));
         }
 
-        options = await loadConfig(options);
-        console.log(options);
+        const options = await loadConfig(cliOptions);
+
+
+        createProject(options, fileName).then(() => {
+            //如果开启了热更新模式
+            if (cliOptions.w) {
+                createServer(resolve(process.cwd(),options.output), options.port);
+            }
+        })
         
-        createProject(options,fileName);
+        
+        
+        
 
     })
     

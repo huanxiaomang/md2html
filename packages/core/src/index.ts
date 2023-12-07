@@ -1,5 +1,4 @@
-export function mdToHTML(markdown) {
-    console.log(markdown);
+export function mdToHTML(markdown:string) {
     
     return `
     <h1>sb</h1>

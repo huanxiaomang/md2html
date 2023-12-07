@@ -1,5 +1,5 @@
-import { red } from "chalk";
-import { resolve } from 'node:path';
+import { red, yellow } from "chalk";
+import { join, resolve } from 'node:path';
 import { cleanFolder, copyDir } from "../../shared/src";
 import { modifyHtmlFile } from "./modifyHTMLFile";
 import { M2HConfig } from "./types/config";
@@ -20,6 +20,8 @@ export default async function createProject(options:M2HConfig,mdFile:string) {
 
     await copyDir(resolve(__dirname,'./template'), root);
 
-    modifyHtmlFile(mdFile, options.output);
+    await modifyHtmlFile(mdFile, options.output);
+    console.log(yellow('🛠️已成功构建: ' + join(options.output,'index.html')));
+     
 
 }

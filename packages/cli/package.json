@@ -26,6 +26,7 @@
         "chalk": "^4.1.2",
         "cheerio": "1.0.0-rc.12",
         "chokidar": "^3.5.3",
+        "express": "^4.18.2",
         "log-horizon": "^0.1.2",
         "typescript": "5.2.2"
     },
