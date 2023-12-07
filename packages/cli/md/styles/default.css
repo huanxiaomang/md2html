@@ -1,0 +1,42 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #333;
+    margin: 0;
+    padding: 8px 0;
+}
+
+hr {
+    margin: 15px 0;
+    border-color: #e5e5e5;
+    border-style: solid;
+}
+
+blockquote {
+    margin: 0;
+    padding: 15px 20px;
+    border-left: 5px solid #c5c5c5;
+    background-color: #eee;
+}
+
+ul {
+    padding: 0;
+    margin: 10px 20px;
+}
+
+li {
+    padding: 2px 0;
+}
+
+code {
+    margin: 0 2px;
+    padding: 3px 6px;
+    background-color: #eee;
+}
+
+img {
+    max-width: 400px;
+}

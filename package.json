@@ -8,8 +8,7 @@
         "cz": "cz",
         "preinstall": "npx only-allow pnpm",
         "lint": "eslint ./ --ext .ts,.js,.json --max-warnings=0",
-        "format": "prettier --config .prettierrc . --write",
-        "ds": "ds"
+        "format": "prettier --config .prettierrc . --write"
     },
     "private": "true",
     "engines": {
@@ -28,6 +27,7 @@
         "eslint-config-prettier": "^9.0.0",
         "eslint-plugin-prettier": "^5.0.1",
         "husky": "^8.0.3",
+        "lerna": "^8.0.0",
         "lint-staged": "^15.1.0",
         "prettier": "^3.1.0",
         "prettier-eslint": "^16.1.2"

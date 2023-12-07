@@ -3,13 +3,37 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
+    "bin": {
+        "mth": "./bin/cli"
+    },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "dev": "tsup --watch --onSuccess \"pnpm load\"",
+        "build": "tsup --minify && npm link",
+        "load": "npm link && node scripts/publicToDist.mjs",
+        "test": "vitest -w"
     },
     "publishConfig": {
         "access": "public"
     },
     "keywords": [],
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "@md2html/core": "workspace:^",
+        "@md2html/shared": "workspace:^",
+        "@types/node": "^20.10.0",
+        "cac": "^6.7.14",
+        "chalk": "^4.1.2",
+        "cheerio": "1.0.0-rc.12",
+        "chokidar": "^3.5.3",
+        "log-horizon": "^0.1.2",
+        "typescript": "5.2.2"
+    },
+    "devDependencies": {
+        "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
+        "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
+        "rollup-plugin-node-polyfills": "^0.2.1",
+        "vite": "^5.0.6",
+        "vitest": "^0.34.6"
+    }
 }
