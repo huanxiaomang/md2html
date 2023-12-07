@@ -8,8 +8,8 @@
     },
     "scripts": {
         "dev": "tsup --watch --onSuccess \"pnpm load\"",
-        "build": "tsup --minify && npm link",
-        "load": "npm link && node scripts/publicToDist.mjs",
+        "build": "tsup --minify && pnpm load",
+        "load": "node scripts/publicToDist.mjs && npm link",
         "test": "vitest -w"
     },
     "publishConfig": {

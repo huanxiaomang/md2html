@@ -1,7 +1,8 @@
 import { copyDir } from '@md2html/shared';
-import { red, yellow } from "chalk";
+import chalk from "chalk";
 import { mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
+const { red, yellow } = chalk;
 
 (async () => {
     try {

@@ -2,7 +2,13 @@
     "name": "@md2html/shared",
     "version": "1.0.0",
     "description": "",
-    "main": "./src/index.ts",
+    "main": "dist/index.js",
+    "exports": {
+        ".": {
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.js"
+        }
+    },
     "scripts": {
         "build": "tsup"
     },
