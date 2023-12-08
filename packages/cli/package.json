@@ -28,7 +28,8 @@
         "chokidar": "^3.5.3",
         "express": "^4.18.2",
         "log-horizon": "^0.1.2",
-        "typescript": "5.2.2"
+        "typescript": "5.2.2",
+        "ws": "^8.14.2"
     },
     "devDependencies": {
         "@esbuild-plugins/node-globals-polyfill": "^0.2.3",

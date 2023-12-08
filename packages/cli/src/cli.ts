@@ -27,14 +27,14 @@ cli.command('[file]', '需要转换的markdown文件')
         const options = await loadConfig(cliOptions);
 
 
-        createProject(options, fileName).then(() => {
-            //如果开启了热更新模式
-            if (cliOptions.w) {
-                createServer(resolve(process.cwd(),options.output), options.port);
-            }
-        })
-        
-        
+        await createProject(options, fileName);
+            
+        //如果开启了热更新模式
+        if (cliOptions.w) {
+            const outputPath = resolve(process.cwd(), options.output);
+            const markdownPath = resolve(process.cwd(), fileName);
+            await createServer(outputPath, markdownPath, options.port);
+        }
         
         
 

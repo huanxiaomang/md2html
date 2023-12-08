@@ -21,7 +21,7 @@ export default async function createProject(options:M2HConfig,mdFile:string) {
     await copyDir(resolve(__dirname,'./template'), root);
 
     await modifyHtmlFile(mdFile, options.output);
-    console.log(yellow('🛠️已成功构建: ' + join(options.output,'index.html')));
+    console.log(yellow('🛠️ 已成功构建: ' + join(options.output,'index.html')));
      
 
 }

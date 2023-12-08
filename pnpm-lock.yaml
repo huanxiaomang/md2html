@@ -83,6 +83,9 @@ importers:
       typescript:
         specifier: 5.2.2
         version: 5.2.2
+      ws:
+        specifier: ^8.14.2
+        version: 8.14.2
     devDependencies:
       '@esbuild-plugins/node-globals-polyfill':
         specifier: ^0.2.3
@@ -8696,7 +8699,6 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
-    dev: true
 
   /xtend@4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
