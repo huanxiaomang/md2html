@@ -2,10 +2,10 @@ import { blueBright, green, red, yellow } from "chalk";
 import chokidar from "chokidar";
 import express from 'express';
 import { readFile, writeFile } from "fs/promises";
-import path from 'path';
+import { join, resolve } from 'path';
 import ws from 'ws';
 import { modifyHtmlFile } from "./modifyHTMLFile";
-
+import logger from "./utils/logger";
 
 
 
@@ -15,21 +15,21 @@ export async function createServer(staticPath:string,mdPath:string,commonPort:nu
     listenMdToHTML(mdPath,staticPath,server);
 }
 
- async function startServer(root:string,htmlPath: string,port:number) {
+ async function startServer(root:string,mdPath: string,port:number) {
     
     const app = express();
 
     
-    await injectWsScripts(htmlPath);
+    await injectWsScripts(resolve(root,'index.html'));
     app.use(express.static(root));
     app.get('*', (_, res) => {
-        res.sendFile(path.join(root, 'index.html'));
+        res.sendFile(join(root, 'index.html'));
     })
 
     const server = app.listen(port, (err) => {
         if (err && err.code === 'EADDRINUSE') {
             console.log(yellow(`端口 ${port} 已被占用，正在尝试下一个端口...`));
-            startServer(root,htmlPath,port + 1); // 尝试下一个端口
+            startServer(root,mdPath,port + 1); // 尝试下一个端口
           } else {
             console.log(green('🚀 启动服务器成功: '), blueBright(`http://localhost:${server.address()?.port}`));
           }
@@ -57,7 +57,7 @@ function listenMdToHTML(markdownPath: string, htmlPath: string,server:any) {
 
             const endTime = performance.now();
             const elapsedTime = endTime - startTime;
-            console.log(yellow(`🔄 实时更新成功 (${elapsedTime.toFixed(2)}ms)`));
+            logger.infoTime(yellow(`🔄 实时更新成功 (${elapsedTime.toFixed(2)}ms)`));
         
     })
     } catch (err) {
@@ -65,6 +65,8 @@ function listenMdToHTML(markdownPath: string, htmlPath: string,server:any) {
     }
 
 }
+
+
 
  async function injectWsScripts(htmlPath:string) {
     let htmlContent = (await readFile(htmlPath)).toString();
@@ -86,8 +88,9 @@ function listenMdToHTML(markdownPath: string, htmlPath: string,server:any) {
     `
      
 
+console.log(htmlContent);
 
-    htmlContent = htmlContent.replace('</body>', `${script}\n</body>`);
+    htmlContent = htmlContent.replace('</body>', `<script>${script}</script>\n</body>`);
     
 
     await writeFile(htmlPath, htmlContent);
