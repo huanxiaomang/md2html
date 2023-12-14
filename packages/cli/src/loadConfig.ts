@@ -21,23 +21,23 @@ function transformArgs(options: Record<string, unknown>): M2HConfig | {} {
         return {};
     }
     const argsConfig = {};
-    const { c: clean, s: port, o: output } = options;
+    const { clean, port, output } = options;
     const overrideOptions = { clean, port, output };
-    for (const key in overrideOptions) { 
-        if (overrideOptions[key] !== undefined) { 
+    for (const key in overrideOptions) {
+        if (overrideOptions[key] !== undefined) {
             argsConfig[key] = overrideOptions[key];
         }
     }
-    
+
     return argsConfig;
 }
 
 
-export async function loadConfig(options:Record<string,unknown>): Promise<M2HConfig> {
+export async function loadConfig(options: Record<string, unknown>): Promise<M2HConfig> {
     const argsConfig = transformArgs(options);
     const localConfig = await getLocalConfig();
-    
-    
+
+
     return {
         ...defaultConifg,
         ...localConfig,

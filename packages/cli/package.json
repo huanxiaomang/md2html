@@ -1,6 +1,6 @@
 {
     "name": "@md2html/cli",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "",
     "main": "index.js",
     "bin": {
@@ -26,6 +26,7 @@
         "chalk": "^4.1.2",
         "cheerio": "1.0.0-rc.12",
         "chokidar": "^3.5.3",
+        "commander": "^11.1.0",
         "express": "^4.18.2",
         "log-horizon": "^0.1.2",
         "typescript": "5.2.2",
