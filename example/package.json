@@ -1,18 +1,13 @@
 {
-    "name": "@md2html/test",
+    "name": "test",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "publishConfig": {
-        "access": "public"
+        "dev": "mth sb.md -w"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "dependencies": {
-        "@md2html/test-share": "workspace:^"
-    }
+    "dependencies": {}
 }
