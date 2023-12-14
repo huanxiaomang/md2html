@@ -1,6 +1,6 @@
 {
     "name": "@md2html/cli",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "",
     "main": "index.js",
     "bin": {
@@ -19,8 +19,8 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@md2html/core": "^1.0.1",
-        "@md2html/shared": "^1.0.1",
+        "@md2html/core": "^1.0.2",
+        "@md2html/shared": "^1.0.2",
         "@types/node": "^20.10.0",
         "cac": "^6.7.14",
         "chalk": "^4.1.2",
@@ -40,5 +40,5 @@
         "vite": "^5.0.6",
         "vitest": "^0.34.6"
     },
-    "gitHead": "d8a60b89c10ee911da3a6d3a6adea01c643a0e31"
+    "gitHead": "bdcdf27658359fe8b0851ed52f1c9f92732d0d5d"
 }
