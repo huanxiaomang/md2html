@@ -73,17 +73,18 @@ function listenMdToHTML(markdownPath: string, outputHTMLPath: string, server: an
 
         const watcher = chokidar.watch(markdownPath, { persistent: true });
         watcher.on('change', async () => {
-            measureRunTime(async () => {
-                await modifyHtmlFile(markdownPath, outputHTMLPath);
-                wss.clients.forEach((client: any) => {
+            const timer = measureRunTime();
+            timer.start();
+            await modifyHtmlFile(markdownPath, outputHTMLPath);
+            wss.clients.forEach((client: any) => {
 
-                    client.send('reload');
+                client.send('reload');
 
-                });
-            }).end((elapsedTime: string) => {
-                logger.infoTime(yellow(`🔄 实时更新成功 (${elapsedTime}ms)`));
+            });
+            const elapsedTime = timer.end();
 
-            })
+            logger.infoTime(yellow(`🔄 实时更新成功 (${elapsedTime}ms)`));
+
 
 
 

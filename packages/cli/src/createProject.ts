@@ -1,4 +1,4 @@
-import { cleanFolder, copyDir, copyFileToDir, getFileNameByPath, logger } from "@md2html/shared";
+import { cleanFolder, copyDir, copyFileToDir, getFileNameByPath, logger, measureRunTime } from "@md2html/shared";
 import { yellow } from "chalk";
 import { existsSync } from "node:fs";
 import { resolve } from 'node:path';
@@ -6,6 +6,8 @@ import { modifyHtmlFile } from "./modifyHTMLFile";
 import { M2HConfig } from "./types/config";
 
 export default async function createProject(options: M2HConfig, mdFile: string): Promise<string> {
+    const timer = measureRunTime();
+    timer.start();
     const root = resolve(process.cwd(), options.output);
     const { html: htmlFilePath } = options;
     let htmlFile = 'index.html';
@@ -39,7 +41,10 @@ export default async function createProject(options: M2HConfig, mdFile: string):
     const outputHTMLPath = resolve(options.output, `${htmlFile}.html`);
     await modifyHtmlFile(mdFile, outputHTMLPath);
 
-    console.log(yellow('🛠️  已成功构建: ' + outputHTMLPath));
+    const elapsedTime = timer.end();
+    console.log(yellow(`🛠️  已成功构建: ${outputHTMLPath} (${elapsedTime}ms)`));
     return outputHTMLPath;
+
+
 
 }

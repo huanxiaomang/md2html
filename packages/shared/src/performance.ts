@@ -1,11 +1,14 @@
-export function measureRunTime(fn:()=>void) {
-    const startTime = performance.now();
-    fn();
-    const endTime = performance.now();
-    const elapsedTime = endTime - startTime;
+export function measureRunTime() {
+    let startTime: number;
+    let endTime: number;
     return {
-        end(endFn:(elapsedTime:string) => void) {
-            endFn(elapsedTime.toFixed(2));
+        start() {
+            startTime = performance.now();
+        },
+        end() {
+            endTime = performance.now();
+            const elapsedTime = endTime - startTime;
+            return elapsedTime.toFixed(2);
         }
     }
 }
