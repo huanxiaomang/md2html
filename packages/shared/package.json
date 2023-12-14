@@ -1,6 +1,6 @@
 {
     "name": "@md2html/shared",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "",
     "main": "dist/index.js",
     "exports": {
@@ -25,5 +25,6 @@
     },
     "dependencies": {
         "chalk": "^4.1.2"
-    }
+    },
+    "gitHead": "d8a60b89c10ee911da3a6d3a6adea01c643a0e31"
 }
