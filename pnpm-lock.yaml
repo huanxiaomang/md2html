@@ -83,6 +83,9 @@ importers:
       log-horizon:
         specifier: ^0.1.2
         version: 0.1.2
+      root-check:
+        specifier: ^2.0.0
+        version: 2.0.0
       typescript:
         specifier: 5.2.2
         version: 5.2.2
@@ -3295,6 +3298,11 @@ packages:
       titleize: 3.0.0
     dev: true
 
+  /default-uid@2.0.0:
+    resolution: {integrity: sha512-aMYTP7vinmUN/dR5n9JUNCB85jy+N+41jx53lMzR6DyGE6NeVPIxCPGbWjDYVNjz6Ei8C9hyeYAfuxVOe3UdsQ==}
+    engines: {node: '>=12'}
+    dev: false
+
   /defaults@1.0.4:
     resolution: {integrity: sha512-eFuaLoy/Rxalv2kr+lqMlUnrDWV+3j4pljOIJgLIhI058IQfWJ7vXhyEIHu+HtC738klGALYxOKDO0bQP3tg8A==}
     dependencies:
@@ -3442,6 +3450,14 @@ packages:
     resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
     engines: {node: '>=12'}
     dev: true
+
+  /downgrade-root@2.0.0:
+    resolution: {integrity: sha512-tke0knZzG76FThh9diBex027u3qsoXv6PKZDva1fsEuqlzlstkcyoJgdHE/wQc2nBU1rnUcmhMUnQA3gucXc0Q==}
+    engines: {node: '>=12'}
+    dependencies:
+      default-uid: 2.0.0
+      is-root: 3.0.0
+    dev: false
 
   /duplexer@0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
@@ -4845,7 +4861,6 @@ packages:
     resolution: {integrity: sha512-F+i2BKsFrH66iaUFc0woD8sLy8getkwTwtOBjvs56Cx4CgJDeKQeqfz8wAYiSb8JOprWhHH5p77PbmYCvvUuXQ==}
     engines: {node: '>=8'}
     hasBin: true
-    dev: true
 
   /is-docker@3.0.0:
     resolution: {integrity: sha512-eljcgEDlEns/7AXFosB5K/2nCM4P7FQPkGc/DWLy5rmFEWvZayGrik1d9/QIY5nJ4f9YsVvBkA6kJpHn9rISdQ==}
@@ -4945,6 +4960,11 @@ packages:
       call-bind: 1.0.5
       has-tostringtag: 1.0.0
     dev: true
+
+  /is-root@3.0.0:
+    resolution: {integrity: sha512-C13bL54yQdgniduW8KFe81ttgQINcwMgil/zyNuDzr/xjIyDMkcvcc9dON62RH9VBAHOI7le+lTo/U3PY3irwg==}
+    engines: {node: '>=12'}
+    dev: false
 
   /is-shared-array-buffer@1.0.2:
     resolution: {integrity: sha512-sqN2UDu1/0y6uvXyStCOzyhAjCSlHceFoMKJW8W9EU9cvic/QdsZ0kEU93HEy3IUEFZIiH/3w+AH/UQbPHNdhA==}
@@ -7242,6 +7262,14 @@ packages:
       '@rollup/rollup-win32-x64-msvc': 4.6.0
       fsevents: 2.3.3
 
+  /root-check@2.0.0:
+    resolution: {integrity: sha512-r9sl0ZLw27mJHTluboMNs345zqeRkIEthbrK2/1pSnl86XZGrNh58X4LqlS8EIViuOxZzjjvSoeIa7Q7OegrMA==}
+    engines: {node: '>=12'}
+    dependencies:
+      downgrade-root: 2.0.0
+      sudo-block: 4.0.0
+    dev: false
+
   /run-applescript@5.0.0:
     resolution: {integrity: sha512-XcT5rBksx1QdIhlFOCtgZkB99ZEouFZ1E2Kc2LHqNW13U3/74YGdkQRmThTwxy4QIyookibDKYZOPqX//6BlAg==}
     engines: {node: '>=12'}
@@ -7768,6 +7796,15 @@ packages:
       mz: 2.7.0
       pirates: 4.0.6
       ts-interface-checker: 0.1.13
+
+  /sudo-block@4.0.0:
+    resolution: {integrity: sha512-bjCE4CcLPEX7K9aCOc9Z4iyNmi1bgEcjS11DU20IbhjxiY2CHwxP7Dy+JlXlGHRq47+wmVr8zmixfELWq+hKBQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      chalk: 4.1.2
+      is-docker: 2.2.1
+      is-root: 3.0.0
+    dev: false
 
   /supports-color@2.0.0:
     resolution: {integrity: sha512-KKNVtd6pCYgPIKU4cp2733HWYCpplQhddZLBUryaAHou723x+FRzQ5Df824Fj+IyyuiQTRoub4SnIFfIcrp70g==}

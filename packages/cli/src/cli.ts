@@ -3,22 +3,27 @@ import { red } from "chalk";
 import { program } from 'commander';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
+
 import createProject from './createProject';
 import { createServer } from './createServer';
 import { loadConfig } from './loadConfig';
-
-
 const pkg = require('../package.json');
 
 
 
 try {
+    checkRoot();
     registerCommand();
 } catch (err) {
     console.log(red(err.message));
 }
 
+async function checkRoot() {
+    const rootCheck = await import('root-check');
 
+    rootCheck.default();
+
+}
 
 function registerCommand() {
     program
@@ -42,6 +47,10 @@ function registerCommand() {
 
     program.parse(process.argv);
 
+    process.on('SIGINT', () => {
+        console.log('\n用户按下了 Ctrl+C，正在退出...');
+        process.exit(0); // 0 表示正常退出
+    });
 
 
 }
@@ -79,13 +88,13 @@ async function run(_, cmdObj) {
     const options = await loadConfig(cliOptions);
 
 
-    await createProject(options, fileName);
+    const outputHTMLPath = await createProject(options, fileName);
 
     //如果开启了热更新模式
     if (cliOptions.watch) {
         const outputPath = resolve(process.cwd(), options.output);
         const markdownPath = resolve(process.cwd(), fileName);
-        await createServer(outputPath, markdownPath, options.port);
+        await createServer(outputPath, markdownPath, outputHTMLPath, options.port);
     }
 
 

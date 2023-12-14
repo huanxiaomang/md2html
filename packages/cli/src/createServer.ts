@@ -3,43 +3,70 @@ import { blueBright, green, red, yellow } from "chalk";
 import chokidar from "chokidar";
 import express from 'express';
 import { readFile, writeFile } from "fs/promises";
-import { join, resolve } from 'path';
 import ws from 'ws';
 import { modifyHtmlFile } from "./modifyHTMLFile";
 
 
 
-export async function createServer(staticPath: string, mdPath: string, commonPort: number = 8080) {
-    const server = await startServer(staticPath, mdPath, commonPort);
+export async function createServer(staticPath: string, mdPath: string, outputHTMLPath: string, commonPort: number = 8080) {
+    const server = await startServer(staticPath, outputHTMLPath, commonPort);
 
-    listenMdToHTML(mdPath, staticPath, server);
+    listenMdToHTML(mdPath, outputHTMLPath, server);
+
 }
 
-async function startServer(root: string, mdPath: string, port: number) {
+async function startServer(root: string, outputHTMLPath: string, port: number) {
 
     const app = express();
 
 
-    await injectWsScripts(resolve(root, 'index.html'));
+    await injectWsScripts(outputHTMLPath);
     app.use(express.static(root));
     app.get('*', (_, res) => {
-        res.sendFile(join(root, 'index.html'));
+        res.sendFile(outputHTMLPath);
     })
+    let left = 5;//重连次数
 
-    const server = app.listen(port, (err) => {
-        if (err && err.code === 'EADDRINUSE') {
-            console.log(yellow(`端口 ${port} 已被占用，正在尝试下一个端口...`));
-            startServer(root, mdPath, port + 1); // 尝试下一个端口
-        } else {
-            console.log(green('🚀 启动服务器成功: '), blueBright(`http://localhost:${server.address()?.port}`));
-        }
-    })
+    const listen = (port: number) => {
+        const duration = 1000;
+
+        return new Promise((resolve, reject) => {
+            const server = app.listen(port);
+
+            server.on('listening', () => {
+                console.log(green('🚀 启动服务器成功: '), blueBright(`http://localhost:${server.address()?.port}`));
+                resolve(server);
+            })
+
+            server.on('error', (err) => {
+                if (err.code !== 'EADDRINUSE') {
+                    throw err;
+                }
+
+                if (left === 0) {
+                    logger.error('启动服务器失败: 端口被占用');
+                    reject('启动服务器失败');
+                }
+                console.log(yellow(`端口 ${port} 已被占用，正在尝试下一个端口...`));
+                left--;
+                setTimeout(() => listen(port + 1), duration);
+
+
+            })
+
+
+        })
+    }
+    const server = await listen(port);
 
     return server;
 }
 
 
-function listenMdToHTML(markdownPath: string, htmlPath: string, server: any) {
+
+
+
+function listenMdToHTML(markdownPath: string, outputHTMLPath: string, server: any) {
 
     try {
         const wss = new ws.Server({ server });
@@ -47,13 +74,13 @@ function listenMdToHTML(markdownPath: string, htmlPath: string, server: any) {
         const watcher = chokidar.watch(markdownPath, { persistent: true });
         watcher.on('change', async () => {
             measureRunTime(async () => {
-                await modifyHtmlFile(markdownPath, htmlPath);
+                await modifyHtmlFile(markdownPath, outputHTMLPath);
                 wss.clients.forEach((client: any) => {
 
                     client.send('reload');
 
                 });
-            }).end((elapsedTime:string) => {
+            }).end((elapsedTime: string) => {
                 logger.infoTime(yellow(`🔄 实时更新成功 (${elapsedTime}ms)`));
 
             })
@@ -89,8 +116,10 @@ async function injectWsScripts(htmlPath: string) {
     `
 
 
+    if (!new RegExp(/<script des='ws'>/g).test(htmlContent)) {
+        htmlContent = htmlContent.replace('</head>', `<script des='ws'>${script}</script>\n</head>`);
+    }
 
-    htmlContent = htmlContent.replace('</head>', `<script>${script}</script>\n</head>`);
 
 
     await writeFile(htmlPath, htmlContent);

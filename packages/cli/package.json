@@ -29,6 +29,7 @@
         "commander": "^11.1.0",
         "express": "^4.18.2",
         "log-horizon": "^0.1.2",
+        "root-check": "^2.0.0",
         "typescript": "5.2.2",
         "ws": "^8.14.2"
     },
