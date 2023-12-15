@@ -4,7 +4,8 @@
     "description": "",
     "main": "dist/index.js",
     "scripts": {
-        "build": "tsup"
+        "build": "tsup",
+        "dev": "tsup --watch --onSuccess \"node dist/index.js\""
     },
     "files": [
         "dist"
@@ -15,11 +16,14 @@
             "require": "./dist/index.js"
         }
     },
-    "private": "false",
+    "publishConfig": {
+        "access": "public"
+    },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "markdown-it": "^14.0.0",
         "tsup": "^8.0.1",
         "typescript": "^5.3.2"
     }
