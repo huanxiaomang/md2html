@@ -5,7 +5,8 @@
     "main": "dist/index.js",
     "scripts": {
         "build": "tsup",
-        "dev": "tsup --watch --onSuccess \"node dist/index.js\""
+        "dev": "tsup --watch --onSuccess \"node dist/index.js\"",
+        "test": "vitest"
     },
     "files": [
         "dist"
@@ -26,5 +27,8 @@
         "markdown-it": "^14.0.0",
         "tsup": "^8.0.1",
         "typescript": "^5.3.2"
+    },
+    "devDependencies": {
+        "vitest": "^0.34.6"
     }
 }

@@ -1,21 +1,29 @@
-export interface TreeItem {
-    el: string;
-    type: 'single' | 'self' | 'wrap' | 'text' | 'inline';
-    content: string[];
+export interface VNode {
+    type: Tags;
+    children: (VNode | Text)[];
 }
 
+export interface Text {
+    type: Tags.TEXT;
+    text: string;
+}
 
-const example: TreeItem[] = [
-    {
-        el: 'h1',
-        type: 'single',
-        content: ['标题1']
-    },
-    {
-        el: 'ul',
-        type: 'wrap',
-        content: [
-
-        ]
-    }
-]
+export enum Tags {
+    H1 = 'h1',
+    H2 = 'h2',
+    H3 = 'h3',
+    H4 = 'h4',
+    H5 = 'h5',
+    H6 = 'h6',
+    P = 'p',
+    LI = 'li',
+    UL = 'ul',
+    OL = 'ol',
+    BLOCKQUOTE = 'blockquote',
+    CODE = 'code',
+    B = 'b',
+    IMG = 'img',
+    A = 'a',
+    HR = 'hr',
+    TEXT = 'text',
+}

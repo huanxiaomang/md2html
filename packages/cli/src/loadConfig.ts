@@ -2,7 +2,7 @@ import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 
 import { resolve } from "node:path";
-import { CONFIG_FILE, defaultConifg } from "./constants";
+import { CONFIG_FILE, defaultConfig } from "./constants";
 import { M2HConfig } from "./types/config";
 
 async function getLocalConfig(): Promise<{} | M2HConfig> {
@@ -39,7 +39,7 @@ export async function loadConfig(options: Record<string, unknown>): Promise<M2HC
 
 
     return {
-        ...defaultConifg,
+        ...defaultConfig,
         ...localConfig,
         ...argsConfig
     }

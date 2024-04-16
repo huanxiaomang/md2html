@@ -1,0 +1,60 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Parser > h1~h6 > 一堆标题 1`] = `
+[
+  {
+    "children": [
+      {
+        "text": "标题1",
+        "type": "text",
+      },
+    ],
+    "type": "h1",
+  },
+  {
+    "children": [
+      {
+        "text": "标题2",
+        "type": "text",
+      },
+    ],
+    "type": "h2",
+  },
+  {
+    "children": [
+      {
+        "text": "标题3",
+        "type": "text",
+      },
+    ],
+    "type": "h3",
+  },
+  {
+    "children": [
+      {
+        "text": "标题4",
+        "type": "text",
+      },
+    ],
+    "type": "h4",
+  },
+  {
+    "children": [
+      {
+        "text": "标题5",
+        "type": "text",
+      },
+    ],
+    "type": "h5",
+  },
+  {
+    "children": [
+      {
+        "text": "标题6",
+        "type": "text",
+      },
+    ],
+    "type": "h6",
+  },
+]
+`;
