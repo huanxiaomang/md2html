@@ -1,7 +1,5 @@
 {
     "output": "md/",
     "clean": "true",
-    "mode": "import",
-    "html": "./assets/default.html",
-    "style": "./assets/styles/default.css"
+    "mode": "import"
 }

@@ -32,15 +32,15 @@ export async function copyFileToDir(filePath: string, targetPath: string) {
 }
 
 export async function copyDir(from: string, to: string) {
-    await mkdir(to).catch(() => void 0)
-    const list = await readdir(from)
+    await mkdir(to).catch(() => void 0);
+    const list = await readdir(from);
     for (const item of list) {
-        const sourcePath = resolve(from, item)
-        const targetPath = resolve(to, item)
+        const sourcePath = resolve(from, item);
+        const targetPath = resolve(to, item);
         if (await hasFile(sourcePath)) {
-            copyFile(sourcePath, targetPath)
+            copyFile(sourcePath, targetPath);
         } else {
-            copyDir(sourcePath, targetPath)
+            copyDir(sourcePath, targetPath);
         }
     }
 }

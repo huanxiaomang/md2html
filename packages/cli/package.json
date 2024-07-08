@@ -9,7 +9,7 @@
     "scripts": {
         "dev": "tsup --watch --onSuccess \"pnpm load\"",
         "build": "tsup --minify && pnpm load",
-        "load": "node scripts/publicToDist.mjs && npm link",
+        "load": "npm link",
         "test": "vitest -w"
     },
     "publishConfig": {

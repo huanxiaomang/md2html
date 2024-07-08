@@ -38,7 +38,7 @@ export default async function createProject(options: M2HConfig, mdFile: string):
 
 
 
-    const outputHTMLPath = resolve(options.output, `${htmlFile}.html`);
+    const outputHTMLPath = resolve(options.output, `${htmlFile}`);
     await modifyHtmlFile(mdFile, outputHTMLPath);
 
     const elapsedTime = timer.end();
