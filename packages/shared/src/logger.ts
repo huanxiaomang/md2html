@@ -1,5 +1,5 @@
 import pkg from 'chalk';
-const { bgBlue, bgRed, dim, bgBlueBright } = pkg;
+const { bgBlue, bgRed, dim, bgBlueBright, red } = pkg;
 
 function createServerLogger() {
     return {
@@ -7,7 +7,7 @@ function createServerLogger() {
             console.info(bgBlue.bold(' WS '), msg);
         },
         error: (msg: string) => {
-            console.info(bgRed.bold(' ERROR '), msg);
+            console.info(bgRed.bold(' ERROR '), red(msg));
         },
         infoTime: (msg: string) => {
             const requestTime = new Date();

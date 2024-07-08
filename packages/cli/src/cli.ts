@@ -1,5 +1,4 @@
 import { logger } from "@md2html/shared";
-import { red } from "chalk";
 import { program } from 'commander';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -15,7 +14,7 @@ try {
     checkRoot();
     registerCommand();
 } catch (err) {
-    console.log(red(err.message));
+    logger.error(err.message);
 }
 
 async function checkRoot() {
@@ -39,16 +38,16 @@ function registerCommand() {
         .action(run);
 
     program.on('command:*', (obj) => {
-        console.log(red('未知的命令:' + obj[0]));
+        logger.error('未知的命令:' + obj[0]);
         program.outputHelp();
-        console.log();
+
 
     })
 
     program.parse(process.argv);
 
     process.on('SIGINT', () => {
-        console.log('\n用户按下了 Ctrl+C，正在退出...');
+        logger.info('\n正在退出...');
         process.exit(0); // 0 表示正常退出
     });
 
@@ -65,9 +64,8 @@ async function run(_, cmdObj) {
 
     if (!fileName) {
 
-        logger.error(red('未指定md文件'));
+        logger.error('未指定md文件');
         program.outputHelp();
-        console.log();
         return;
 
 
