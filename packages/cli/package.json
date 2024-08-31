@@ -10,7 +10,8 @@
         "dev": "tsup --watch --onSuccess \"pnpm load\"",
         "build": "tsup --minify && pnpm load",
         "load": "npm link",
-        "test": "vitest -w"
+        "test": "vitest -w",
+        "release": "release-it"
     },
     "publishConfig": {
         "access": "public"
