@@ -1,10 +1,10 @@
 {
-    "name": "test",
+    "name": "example",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "scripts": {
-        "dev": "mth sb.md -w"
+        "dev": "mth docs.md -w"
     },
     "keywords": [],
     "author": "",

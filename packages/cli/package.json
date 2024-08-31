@@ -20,8 +20,8 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@md2html/core": "^1.0.3",
-        "@md2html/shared": "^1.0.3",
+        "@md2html/core": "workspace:*",
+        "@md2html/shared": "workspace:*",
         "@remirror/core": "^3.0.1",
         "@types/node": "^20.10.0",
         "cac": "^6.7.14",
