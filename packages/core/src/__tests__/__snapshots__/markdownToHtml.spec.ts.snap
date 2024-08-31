@@ -1,0 +1,8 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`markdownToHtml > should match snapshot for complex document 1`] = `
+"<h1>Main Header</h1><p><strong>Bold text</strong> and <em>italic text</em>.</p><ol><li>First ordered item</li><li>Second ordered item</li></ol><ul><li>First unordered item</li><li>Second unordered item</li></ul><blockquote><p>A blockquote</p></blockquote><pre><code>Code block
+</code></pre><p><a href="http://example.com">Link</a></p><p><img src="http://example.com/image.png" alt="Image"/></p>"
+`;
+
+exports[`markdownToHtml > should match snapshot for mixed content 1`] = `"<h1>Header</h1><p><strong>Bold</strong> and <em>italic</em> text.</p><ul><li>List item 1</li><li>List item 2</li></ul><p><code>inline code</code></p>"`;

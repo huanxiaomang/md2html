@@ -6,7 +6,8 @@
     "scripts": {
         "build": "tsup",
         "dev": "tsup --watch --onSuccess \"node dist/index.js\"",
-        "test": "vitest"
+        "test": "vitest",
+        "coverage": "vitest run --coverage"
     },
     "files": [
         "dist"
@@ -24,11 +25,11 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "markdown-it": "^14.0.0",
-        "tsup": "^8.0.1",
-        "typescript": "^5.3.2"
+        "tsup": "^8.2.4",
+        "typescript": "^5.5.4"
     },
     "devDependencies": {
-        "vitest": "^0.34.6"
+        "@vitest/coverage-v8": "^2.0.5",
+        "vitest": "^2.0.5"
     }
 }

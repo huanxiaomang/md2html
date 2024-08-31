@@ -1,5 +1,5 @@
 {
-    "output": "md/",
+    "output": "p/",
     "clean": "true",
     "mode": "import"
 }

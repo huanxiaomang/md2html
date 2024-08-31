@@ -1,6 +1,7 @@
 {
     "extends": "./../../tsconfig.option.json",
     "compilerOptions": {
-        "types": ["vitest"]
+        "types": ["vitest"],
+        "moduleResolution": "Node16"
     }
 }
