@@ -26,6 +26,8 @@ yarn global add @md2html/cli
 
 安装完成后即可使用 `mth` 命令来转换。
 
+---
+
 下面是一些简单的使用示例：
 
 ```bash

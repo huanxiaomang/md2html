@@ -11,8 +11,8 @@ hero:
           text: 快速上手
           link: /guide/quick-start.html
         - theme: alt
-          text: API
-          link: /guide/api
+          text: 开发文档
+          link: /contribution/index.html
     image:
         src: /logo.svg
         alt: Md2HTML
